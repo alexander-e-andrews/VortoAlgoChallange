@@ -1,0 +1,43 @@
+// Implementation 1
+mean cost: 52383.156412571276
+mean run time: 10.461008548736572ms
+mean run time: 10.038995742797852ms
+mean run time: 8.150410652160645ms
+
+
+// Implementation 1: Removing from tree, still add to used node list
+mean cost: 52383.156412571276
+mean run time: 9.947216510772705ms
+mean run time: 7.193398475646973ms
+mean run time: 7.964348793029785ms
+
+// Implementation 1: Removing from tree, don't add to used node list
+mean cost: 52383.156412571276
+mean run time: 9.189653396606445ms
+mean run time: 7.376003265380859ms
+mean run time: 6.964051723480225ms
+
+// Implementation 1: Reverse Order starting node Removing from tree
+mean cost: 53327.365257220095
+mean run time: 13.11098337173462ms
+mean run time: 8.037328720092773ms
+mean run time: 8.168673515319824ms
+
+
+// Implementation 1: starting node ordered by cneter clockwise and removing from tree
+mean cost: 52166.044019865956
+mean run time: 14.866447448730469ms
+mean run time: 7.056117057800293ms
+mean run time: 7.40891695022583ms
+
+// Implementation1: use map to track all visited nodes instead of array removing from tree 
+mean cost: 52383.156412571276
+mean run time: 10.236454010009766ms
+mean run time: 7.401883602142334ms
+mean run time: 7.561326026916504ms
+
+// Implementation1: Best of different order lsit order 
+mean cost: 50057.51830102918
+mean run time: 12.849593162536621ms
+mean run time: 9.54885482788086ms
+mean run time: 9.689676761627197ms
