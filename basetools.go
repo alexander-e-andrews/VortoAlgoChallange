@@ -2,8 +2,7 @@ package main
 
 import (
 	"encoding/csv"
-	"errors"
-	"fmt"
+	"errors"	
 	"io"
 	"math"
 	"os"
@@ -93,11 +92,6 @@ func loadLoadFile(filePath string) (loads []*BasicLoad, err error) {
 
 		record.Distance = DistanceBetweenTwoPoints(record.Pickup, record.DropOff)
 		record.DistanceToHome = DistanceBetweenTwoPoints(record.DropOff, HOME_VECTOR)
-		if isImpossible(&record) {
-			err = ErrInvalidLoadDistance
-			errors.Join(err, fmt.Errorf("load: %d", record.LoadNumber))
-			return
-		}
 		loads = append(loads, &record)
 	}
 
@@ -134,6 +128,7 @@ func DistanceBetweenTwoPoints(a, b *vector.V) (distance float64) {
 	return
 }
 
+// Prompt says the actions are always possible
 func isImpossible(load *BasicLoad) (impossible bool) {
 	return (load.Distance + load.DistanceToHome + DistanceBetweenTwoPoints(HOME_VECTOR, load.Pickup)) > MAX_DISTANCE
 }

@@ -41,3 +41,9 @@ mean cost: 50057.51830102918
 mean run time: 12.849593162536621ms
 mean run time: 9.54885482788086ms
 mean run time: 9.689676761627197ms
+
+// Implementation4
+mean cost: 52140.24178459974
+mean run time: 11.686837673187256ms
+mean run time: 9.096801280975342ms
+mean run time: 8.425521850585938ms

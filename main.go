@@ -22,7 +22,7 @@ func main() {
 	// actually, no, we just need to store start nodes, we use the end node to find the next closest
 	// so k-d tree of start nodes, Search(endNode)
 	//https://en.wikipedia.org/wiki/K-d_tree
-	res, err := BasicRun(os.Args[1], implementation1)
+	res, err := BasicRun(os.Args[1], implementation1LoadSwapPerformance)
 	if err != nil {
 		panic(err)
 	}
@@ -38,10 +38,10 @@ func main() {
 }
 
 type Results [][]int
-type Implementation func(tree *kd.KD[*BasicLoad], loads []*BasicLoad) (res Result)
+type Implementation func(loads []*BasicLoad) (res [][]int)
 
 // Have this return the results
-func BasicRun(filepath string, implementation Implementation) (results Results, err error) {
+func BasicRun(filepath string, implementation Implementation) (results [][]int, err error) {
 	loads, err := loadLoadFile(filepath)
 	if err != nil {
 		return
@@ -50,7 +50,7 @@ func BasicRun(filepath string, implementation Implementation) (results Results, 
 	// _ = minNumberOfDrivers // Not sure how this number will be used yet
 	// tree := buildKDTree(loads)
 	// res := implementation(tree, loads)
-	results = implementation1LoadSwapPerformance(loads)
+	results = implementation(loads)
 	return
 }
 

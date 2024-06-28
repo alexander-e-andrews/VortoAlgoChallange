@@ -16,14 +16,13 @@ func TestImplementation1HyperSpace(t *testing.T){
 		return
 	}
 	sort.Slice(loads, func(i, j int) bool { return loads[i].DistanceToHome > loads[j].DistanceToHome })
-	tree := buildKDTree(loads)
 	loadMap := ConstructLoadMap(loads)
 	// With just {47,185,151} got [0 0 0] as one of the options ,{165, 146}
-	results := implementation1(tree, loads)
+	results := implementation1(loads)
 	
-	t.Log(results.Results)
-	cost := calculateCost(results.Results, loadMap)
-	t.Log(results.Results)
+	t.Log(results)
+	cost := calculateCost(results, loadMap)
+	t.Log(results)
 	t.Log(cost)
 }
 
@@ -74,4 +73,14 @@ func ensureNoRepeatNodes(t *testing.T, results Results) {
 		t.Fail()
 	}
 
+}
+
+
+func TestImplementation4Basic(t *testing.T) {
+	results, err := BasicRun("./Training Problems/problem10.txt", implementation4)
+	if err != nil {
+		t.Error(err)
+	}
+
+	ensureNoRepeatNodes(t, results)
 }

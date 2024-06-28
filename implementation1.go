@@ -16,8 +16,9 @@ var loadsOrderFunction = func(loads []*BasicLoad) {
 
 // Implementation 1 will grab the furthest points from home to start from
 // Features this is missing is actually iterating through and finding the best solution
-func implementation1(tree *kd.KD[*BasicLoad], loads []*BasicLoad) (res Result) {
-	res.Results = make(Results, 0)
+func implementation1(loads []*BasicLoad) (res [][]int) {
+	tree := buildKDTree(loads)
+	res = make(Results, 0)
 	// Organize start points from furthest to closest from Home
 	// Since further to closest, less function is actually a more function
 
@@ -54,7 +55,7 @@ func implementation1(tree *kd.KD[*BasicLoad], loads []*BasicLoad) (res Result) {
 			})
 			// We ran out of nodes, we need to say that this is done, and we need a new driver
 			if len(possibleLoads) == 0 {
-				res.Results = append(res.Results, myVisitedNodes)
+				res = append(res, myVisitedNodes)
 				break
 			}
 			nextLoad = possibleLoads[0]
@@ -273,14 +274,13 @@ func implementation1LoadSwapPerformance(loads []*BasicLoad) (res [][]int) {
 	for x, f := range LoadsOrderFuncs {
 		clonedLoads := make([]*BasicLoad, len(loads))
 		copy(clonedLoads, loads)
-		tree := buildKDTree(clonedLoads)
 		loadsOrderFunction = f
-		reply := implementation1(tree, clonedLoads)
-		cost := calculateCost(reply.Results, loadMap)
+		reply := implementation1(clonedLoads)
+		cost := calculateCost(reply, loadMap)
 		if cost < minCost {
 			theIndex = x
 			minCost = cost
-			res = reply.Results
+			res = reply
 		}
 	}
 	f, err := os.OpenFile("./output.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
